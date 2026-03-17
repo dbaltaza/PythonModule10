@@ -10,8 +10,8 @@ def spell_reducer(spells: list[int], operation: str) -> int:
     operations = {
         'add': operator.add,
         'multiply': operator.mul,
-        'max': lambda a, b: max(a, b),
-        'min': lambda a, b: min(a, b)
+        'max': lambda a, b: a if operator.gt(a, b) else b,
+        'min': lambda a, b: a if operator.lt(a, b) else b
     }
 
     if operation not in operations:

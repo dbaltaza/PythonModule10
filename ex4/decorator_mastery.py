@@ -23,12 +23,17 @@ def power_validator(min_power: int) -> Callable:
     def decorator(func: Callable) -> Callable:
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            # Try to find power in args or kwargs
+            # Get function signature to find 'power' parameter
+            import inspect
+            sig = inspect.signature(func)
+            params = list(sig.parameters.keys())
+
+            # Find power value
             power = None
-            if len(args) >= 2:
-                power = args[1]  # Assuming second arg is power (after self)
-            elif 'power' in kwargs:
+            if 'power' in kwargs:
                 power = kwargs['power']
+            elif 'power' in params and len(args) > params.index('power'):
+                power = args[params.index('power')]
 
             if power is not None and power < min_power:
                 return "Insufficient power for this spell"
