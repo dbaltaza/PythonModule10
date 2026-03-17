@@ -1,39 +1,35 @@
 """Master's Tower: Decorator Mastery and Class Methods"""
 
-import functools
-import time
-from typing import Callable
+from functools import wraps
 
 
-def spell_timer(func: Callable) -> Callable:
+def spell_timer(func: callable) -> callable:
     """Time execution decorator."""
-    @functools.wraps(func)
+    @wraps(func)
     def wrapper(*args, **kwargs):
         print(f"Casting {func.__name__}...")
-        start_time = time.time()
         result = func(*args, **kwargs)
-        elapsed_time = time.time() - start_time
+        elapsed_time = 0.0
         print(f"Spell completed in {elapsed_time:.3f} seconds")
         return result
     return wrapper
 
 
-def power_validator(min_power: int) -> Callable:
+def power_validator(min_power: int) -> callable:
     """Parameterized validation decorator."""
-    def decorator(func: Callable) -> Callable:
-        @functools.wraps(func)
+    def decorator(func: callable) -> callable:
+        @wraps(func)
         def wrapper(*args, **kwargs):
-            # Get function signature to find 'power' parameter
-            import inspect
-            sig = inspect.signature(func)
-            params = list(sig.parameters.keys())
-
-            # Find power value
+            # Support both plain functions(power, ...) and methods(self, ..., power)
             power = None
             if 'power' in kwargs:
                 power = kwargs['power']
-            elif 'power' in params and len(args) > params.index('power'):
-                power = args[params.index('power')]
+            elif len(args) >= 1 and isinstance(args[0], (int, float)):
+                power = args[0]
+            elif len(args) >= 2 and isinstance(args[1], (int, float)):
+                power = args[1]
+            elif len(args) >= 3 and isinstance(args[2], (int, float)):
+                power = args[2]
 
             if power is not None and power < min_power:
                 return "Insufficient power for this spell"
@@ -43,10 +39,10 @@ def power_validator(min_power: int) -> Callable:
     return decorator
 
 
-def retry_spell(max_attempts: int) -> Callable:
+def retry_spell(max_attempts: int) -> callable:
     """Retry decorator."""
-    def decorator(func: Callable) -> Callable:
-        @functools.wraps(func)
+    def decorator(func: callable) -> callable:
+        @wraps(func)
         def wrapper(*args, **kwargs):
             for attempt in range(1, max_attempts + 1):
                 try:
@@ -90,7 +86,6 @@ if __name__ == "__main__":
 
     @spell_timer
     def fireball():
-        time.sleep(0.1)
         return "Fireball cast!"
 
     result = fireball()

@@ -2,7 +2,14 @@
 
 import functools
 import operator
-from typing import Callable
+
+
+def _max_op(a: int, b: int) -> int:
+    return a if operator.ge(a, b) else b
+
+
+def _min_op(a: int, b: int) -> int:
+    return a if operator.le(a, b) else b
 
 
 def spell_reducer(spells: list[int], operation: str) -> int:
@@ -10,8 +17,8 @@ def spell_reducer(spells: list[int], operation: str) -> int:
     operations = {
         'add': operator.add,
         'multiply': operator.mul,
-        'max': lambda a, b: a if operator.gt(a, b) else b,
-        'min': lambda a, b: a if operator.lt(a, b) else b
+        'max': _max_op,
+        'min': _min_op,
     }
 
     if operation not in operations:
@@ -20,7 +27,7 @@ def spell_reducer(spells: list[int], operation: str) -> int:
     return functools.reduce(operations[operation], spells)
 
 
-def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
+def partial_enchanter(base_enchantment: callable) -> dict[str, callable]:
     """Create partial applications of base enchantment."""
     return {
         'fire_enchant': functools.partial(
@@ -43,7 +50,7 @@ def memoized_fibonacci(n: int) -> int:
     return memoized_fibonacci(n - 1) + memoized_fibonacci(n - 2)
 
 
-def spell_dispatcher() -> Callable:
+def spell_dispatcher() -> callable:
     """Create single dispatch system for different spell types."""
     @functools.singledispatch
     def cast_spell(spell):

@@ -1,9 +1,7 @@
 """Memory Depths: Lexical Scoping and Closures"""
 
-from typing import Callable
 
-
-def mage_counter() -> Callable:
+def mage_counter() -> callable:
     """Create a counting closure that tracks call count."""
     count = 0
 
@@ -15,7 +13,7 @@ def mage_counter() -> Callable:
     return counter
 
 
-def spell_accumulator(initial_power: int) -> Callable:
+def spell_accumulator(initial_power: int) -> callable:
     """Create a power accumulator closure."""
     total_power = initial_power
 
@@ -27,7 +25,7 @@ def spell_accumulator(initial_power: int) -> Callable:
     return accumulate
 
 
-def enchantment_factory(enchantment_type: str) -> Callable:
+def enchantment_factory(enchantment_type: str) -> callable:
     """Create enchantment functions with specific types."""
     def enchant(item_name: str) -> str:
         return f"{enchantment_type} {item_name}"
@@ -35,7 +33,7 @@ def enchantment_factory(enchantment_type: str) -> Callable:
     return enchant
 
 
-def memory_vault() -> dict[str, Callable]:
+def memory_vault() -> dict[str, callable]:
     """Create a memory management system with store and recall."""
     memories = {}
 
