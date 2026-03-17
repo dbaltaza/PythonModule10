@@ -54,26 +54,9 @@ if __name__ == "__main__":
     print(f"Call 2: {counter()}")
     print(f"Call 3: {counter()}")
 
-    # Testing spell accumulator
-    print("\nTesting spell accumulator...")
-    accumulator = spell_accumulator(100)
-    print("Starting power: 100")
-    print(f"After adding 50: {accumulator(50)}")
-    print(f"After adding 25: {accumulator(25)}")
-    print(f"After adding 10: {accumulator(10)}")
-
     # Testing enchantment factory
     print("\nTesting enchantment factory...")
     flaming = enchantment_factory("Flaming")
     frozen = enchantment_factory("Frozen")
     print(flaming("Sword"))
     print(frozen("Shield"))
-
-    # Testing memory vault
-    print("\nTesting memory vault...")
-    vault = memory_vault()
-    vault['store']('secret', 'Dragon Location')
-    vault['store']('spell', 'Ultimate Fireball')
-    print(f"Recalled 'secret': {vault['recall']('secret')}")
-    print(f"Recalled 'spell': {vault['recall']('spell')}")
-    print(f"Recalled 'missing': {vault['recall']('missing')}")

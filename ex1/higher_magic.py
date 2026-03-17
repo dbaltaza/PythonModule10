@@ -61,19 +61,3 @@ if __name__ == "__main__":
     original = damage_spell("Enemy")
     amplified = mega_damage("Enemy")
     print(f"Original: {original}, Amplified: {amplified}")
-
-    # Testing conditional caster
-    print("\nTesting conditional caster...")
-
-    def is_enemy(target):
-        return target == "Enemy"
-
-    conditional_fireball = conditional_caster(is_enemy, fireball)
-    print(f"Against Enemy: {conditional_fireball('Enemy')}")
-    print(f"Against Friend: {conditional_fireball('Friend')}")
-
-    # Testing spell sequence
-    print("\nTesting spell sequence...")
-    multi_cast = spell_sequence([fireball, heal])
-    results = multi_cast("Dragon")
-    print(f"Sequence results: {results}")

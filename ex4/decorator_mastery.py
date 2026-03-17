@@ -95,32 +95,6 @@ if __name__ == "__main__":
     result = fireball()
     print(f"Result: {result}")
 
-    # Testing power validator
-    print("\nTesting power validator...")
-
-    @power_validator(min_power=50)
-    def powerful_spell(power: int):
-        return f"Spell cast with {power} power"
-
-    print(powerful_spell(75))
-    print(powerful_spell(25))
-
-    # Testing retry spell
-    print("\nTesting retry spell...")
-
-    attempt_count = 0
-
-    @retry_spell(max_attempts=3)
-    def unstable_spell():
-        global attempt_count
-        attempt_count += 1
-        if attempt_count < 3:
-            raise Exception("Spell fizzled")
-        return "Spell succeeded!"
-
-    result = unstable_spell()
-    print(f"Result: {result}")
-
     # Testing MageGuild
     print("\nTesting MageGuild...")
     print(MageGuild.validate_mage_name("Gandalf"))

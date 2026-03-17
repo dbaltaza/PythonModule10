@@ -68,36 +68,11 @@ if __name__ == "__main__":
     # Testing spell reducer
     print("Testing spell reducer...")
     spells = [10, 20, 30, 40]
-    print(f"Spells: {spells}")
     print(f"Sum: {spell_reducer(spells, 'add')}")
     print(f"Product: {spell_reducer(spells, 'multiply')}")
     print(f"Max: {spell_reducer(spells, 'max')}")
-    print(f"Min: {spell_reducer(spells, 'min')}")
-
-    # Testing partial enchanter
-    print("\nTesting partial enchanter...")
-
-    def enchant(power: int, element: str, target: str):
-        return (
-            f"{element.capitalize()} enchantment "
-            f"({power} power) on {target}"
-        )
-
-    enchants = partial_enchanter(enchant)
-    print(enchants['fire_enchant'](target='Sword'))
-    print(enchants['ice_enchant'](target='Shield'))
-    print(enchants['lightning_enchant'](target='Staff'))
 
     # Testing memoized fibonacci
     print("\nTesting memoized fibonacci...")
     print(f"Fib(10): {memoized_fibonacci(10)}")
     print(f"Fib(15): {memoized_fibonacci(15)}")
-    print(f"Fib(20): {memoized_fibonacci(20)}")
-    print(f"Cache info: {memoized_fibonacci.cache_info()}")
-
-    # Testing spell dispatcher
-    print("\nTesting spell dispatcher...")
-    dispatcher = spell_dispatcher()
-    print(dispatcher(50))
-    print(dispatcher("Lightning Strike"))
-    print(dispatcher(["Fireball", "Ice Blast", "Heal"]))
