@@ -1,9 +1,7 @@
 """Higher Realm: Functions Operating on Functions"""
 
-from typing import Callable
 
-
-def spell_combiner(spell1: Callable, spell2: Callable) -> Callable:
+def spell_combiner(spell1: callable, spell2: callable) -> callable:
     """Combine two spells into one that calls both."""
     def combined(*args, **kwargs):
         result1 = spell1(*args, **kwargs)
@@ -12,7 +10,7 @@ def spell_combiner(spell1: Callable, spell2: Callable) -> Callable:
     return combined
 
 
-def power_amplifier(base_spell: Callable, multiplier: int) -> Callable:
+def power_amplifier(base_spell: callable, multiplier: int) -> callable:
     """Amplify a spell's power by multiplying its result."""
     def amplified(*args, **kwargs):
         result = base_spell(*args, **kwargs)
@@ -20,7 +18,7 @@ def power_amplifier(base_spell: Callable, multiplier: int) -> Callable:
     return amplified
 
 
-def conditional_caster(condition: Callable, spell: Callable) -> Callable:
+def conditional_caster(condition: callable, spell: callable) -> callable:
     """Cast a spell only if condition is met."""
     def conditional(*args, **kwargs):
         if condition(*args, **kwargs):
@@ -30,7 +28,7 @@ def conditional_caster(condition: Callable, spell: Callable) -> Callable:
     return conditional
 
 
-def spell_sequence(spells: list[Callable]) -> Callable:
+def spell_sequence(spells: list[callable]) -> callable:
     """Create a function that casts all spells in order."""
     def sequenced(*args, **kwargs):
         results = []

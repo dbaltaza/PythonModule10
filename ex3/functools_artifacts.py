@@ -4,21 +4,13 @@ import functools
 import operator
 
 
-def _max_op(a: int, b: int) -> int:
-    return a if operator.ge(a, b) else b
-
-
-def _min_op(a: int, b: int) -> int:
-    return a if operator.le(a, b) else b
-
-
 def spell_reducer(spells: list[int], operation: str) -> int:
     """Reduce spell powers using specified operation."""
     operations = {
         'add': operator.add,
         'multiply': operator.mul,
-        'max': _max_op,
-        'min': _min_op,
+        'max': lambda a, b: a if operator.gt(a, b) else b,
+        'min': lambda a, b: a if operator.lt(a, b) else b
     }
 
     if operation not in operations:
