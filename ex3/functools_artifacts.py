@@ -23,9 +23,15 @@ def spell_reducer(spells: list[int], operation: str) -> int:
 def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
     """Create partial applications of base enchantment."""
     return {
-        'fire_enchant': functools.partial(base_enchantment, power=50, element='fire'),
-        'ice_enchant': functools.partial(base_enchantment, power=50, element='ice'),
-        'lightning_enchant': functools.partial(base_enchantment, power=50, element='lightning')
+        'fire_enchant': functools.partial(
+            base_enchantment, power=50, element='fire'
+        ),
+        'ice_enchant': functools.partial(
+            base_enchantment, power=50, element='ice'
+        ),
+        'lightning_enchant': functools.partial(
+            base_enchantment, power=50, element='lightning'
+        ),
     }
 
 
@@ -53,7 +59,8 @@ def spell_dispatcher() -> Callable:
 
     @cast_spell.register(list)
     def _(spell):
-        return f"Multi-cast: {len(spell)} spells ({', '.join(map(str, spell))})"
+        spell_list = ', '.join(map(str, spell))
+        return f"Multi-cast: {len(spell)} spells ({spell_list})"
 
     return cast_spell
 
@@ -72,7 +79,10 @@ if __name__ == "__main__":
     print("\nTesting partial enchanter...")
 
     def enchant(power: int, element: str, target: str):
-        return f"{element.capitalize()} enchantment ({power} power) on {target}"
+        return (
+            f"{element.capitalize()} enchantment "
+            f"({power} power) on {target}"
+        )
 
     enchants = partial_enchanter(enchant)
     print(enchants['fire_enchant'](target='Sword'))

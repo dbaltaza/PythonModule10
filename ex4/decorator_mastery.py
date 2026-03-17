@@ -46,11 +46,17 @@ def retry_spell(max_attempts: int) -> Callable:
             for attempt in range(1, max_attempts + 1):
                 try:
                     return func(*args, **kwargs)
-                except Exception as e:
+                except Exception:
                     if attempt < max_attempts:
-                        print(f"Spell failed, retrying... (attempt {attempt}/{max_attempts})")
+                        print(
+                            "Spell failed, retrying... "
+                            f"(attempt {attempt}/{max_attempts})"
+                        )
                     else:
-                        return f"Spell casting failed after {max_attempts} attempts"
+                        return (
+                            "Spell casting failed after "
+                            f"{max_attempts} attempts"
+                        )
             return f"Spell casting failed after {max_attempts} attempts"
         return wrapper
     return decorator
@@ -102,7 +108,7 @@ if __name__ == "__main__":
 
     @retry_spell(max_attempts=3)
     def unstable_spell():
-        nonlocal attempt_count
+        global attempt_count
         attempt_count += 1
         if attempt_count < 3:
             raise Exception("Spell fizzled")

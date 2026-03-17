@@ -35,8 +35,12 @@ if __name__ == "__main__":
         {'name': 'Ice Wand', 'power': 78, 'type': 'wand'}
     ]
     sorted_artifacts = artifact_sorter(artifacts)
-    print(f"{sorted_artifacts[0]['name']} ({sorted_artifacts[0]['power']} power) "
-          f"comes before {sorted_artifacts[1]['name']} ({sorted_artifacts[1]['power']} power)")
+    print(
+        f"{sorted_artifacts[0]['name']} "
+        f"({sorted_artifacts[0]['power']} power) "
+        f"comes before {sorted_artifacts[1]['name']} "
+        f"({sorted_artifacts[1]['power']} power)"
+    )
 
     # Testing spell transformer
     print("\nTesting spell transformer...")

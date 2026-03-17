@@ -59,7 +59,7 @@ if __name__ == "__main__":
     # Testing spell accumulator
     print("\nTesting spell accumulator...")
     accumulator = spell_accumulator(100)
-    print(f"Starting power: 100")
+    print("Starting power: 100")
     print(f"After adding 50: {accumulator(50)}")
     print(f"After adding 25: {accumulator(25)}")
     print(f"After adding 10: {accumulator(10)}")

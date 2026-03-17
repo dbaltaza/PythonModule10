@@ -66,6 +66,7 @@ if __name__ == "__main__":
 
     # Testing conditional caster
     print("\nTesting conditional caster...")
+
     def is_enemy(target):
         return target == "Enemy"
 
